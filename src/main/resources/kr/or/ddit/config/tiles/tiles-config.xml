@@ -16,8 +16,5 @@
 	<definition name="board/boardSet" extends="basicLayout">
 		<put-attribute name="content" value="/WEB-INF/view/board/boardSet.jsp"/>
 	</definition>
-	<definition name="board/boardList" extends="basicLayout">
-		<put-attribute name="content" value="/WEB-INF/view/board/boardList.jsp"/>
-	</definition>
 	
 </tiles-definitions>

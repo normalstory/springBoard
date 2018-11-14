@@ -3,17 +3,12 @@
 
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-sidebar">
-		<li class="active"> <a href="/main">Main <span class="sr-only">(current)</span> </a></li>
-		<li class="active"> <a href="/boardSetView">게시판 메뉴관리							</a></li>	
-		<li class="active"> <a href="/filter/requestCounterFilter.jsp">게시판 통계관리			</a></li>	
-		<li class="active"> <a href="/mvpTrello">MVP Modeling								</a></li>	
-		
+		<li class="active"> <a href="/boardSetView">게시판 메뉴관리</a></li>	
+		<c:forEach items="${boardManu }" var="board">
+			<li >
+				${board.boardname }
+			</li>
+		</c:forEach>
 	</ul>
 	
-	
-	<c:forEach items="${panListManu }" var="board">
-		<li class="active">
-			<a href="/boardTextList?page=1&pageSize=10&panId=${board.panId }&panName=${board.panName }">${board.panName }</a>
-		</li>
-	</c:forEach>
 </div>

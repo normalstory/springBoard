@@ -1,5 +1,9 @@
 package kr.or.ddit.login;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.or.ddit.board.model.BoardVo;
+import kr.or.ddit.board.service.BoardServiceInf;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserServiceInf;
 
@@ -18,6 +24,9 @@ public class LogInOutController {
 
 	@Resource(name="userService")
 	private UserServiceInf userService;
+
+	@Resource(name="boardService")
+	private BoardServiceInf boardService;
 	
 	//1. 일단 페이지 로드 
 	@RequestMapping("/login")
@@ -52,6 +61,16 @@ public class LogInOutController {
 		
 		if(userVo.getUserid().equals(userId)&&userVo.getUserpass().equals(userPass)) {
 			session.setAttribute("uservo", uservo);
+			
+			//게시판 목록 출력
+			List<BoardVo> boardManu = boardService.boardManu();
+			req.getServletContext().setAttribute("boardManu", boardManu);
+			
+			//오늘의 날짜
+			SimpleDateFormat todayform= new SimpleDateFormat("yyyy-MM-dd");
+			String today = todayform.format(new Date());
+			req.getSession().setAttribute("today", today);
+			
 			return "main";
 		}else{
 			return "/login/login";

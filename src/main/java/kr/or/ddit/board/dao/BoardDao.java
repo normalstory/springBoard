@@ -1,5 +1,7 @@
 package kr.or.ddit.board.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,6 +18,16 @@ public class BoardDao implements BoardDaoInf{
 	@Override
 	public int addBoard(BoardVo boardVo) {
 		return template.insert("board.addBoard", boardVo);
+	}
+
+	@Override
+	public List<BoardVo> boardList() {
+		return template.selectList("board.boardList");
+	}
+
+	@Override
+	public List<BoardVo> boardManu() {
+		return template.selectList("board.boardManu");
 	}
 	
 	

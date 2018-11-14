@@ -40,42 +40,42 @@
 	<p>게시판을 관리하는 페이지 입니다.</p>
 	<hr>
 
-	<h3>게시판 목록</h3>
-	<span>신규 생성하기</span>
+	<h3>신규 생성하기</h3>
 	<ul> 
 		<li id="addBoardParam" >
-			<input class="addPan" type="text" name="addboardname" placeholder="생성할 게시판 이름 기재~" /> 
-			<select class="addPan" name="addboarddel" >
+			<input class="addPan" type="text" placeholder="생성할 게시판 이름 기재~" /> 
+			<select class="addPan" >
 					<option value="y">사용</option>
 					<option value="x">안사용</option>
 			</select> 
-			<button type="button" class="addBoard">등록</button>
 		</li>
 	</ul>
-	<br/>
+	<a class="btn btn-default addBoard" id="saveMenu">등록 </a>
+	<br/><br/><br/><br/>
 	
-	<!-- parameter sender -->
-	<span>운영 게시판 목록</span>
 	<form id="frm" action="/boardSet" method="post">
-		관리자 : <input type="text" name="userid" value="${uservo.userid}">
+		<input type="hidden" name="userid" value="${uservo.userid}">
 		<input id="boardid" type="hidden" name="boardid" >
-		<input id="pan_Case" type="hidden" name="boarddel" >
+		<input id="boarddel" type="hidden" name="boarddel" >
+		<input id="pan_Case" type="hidden" name="setCase" >
+		<input id="boardname" type="hidden" name="boardname">
 		
+		<h3>운영 게시판 목록</h3>
 		<ul class="updateBoardParam" >
 			<c:forEach items="${boardList }" var="board" varStatus="i">
 				<li >
-					<input type="hidden" name="boardid" value="${board.boardid }" />
 					<input type="text" name="boardname" value="${board.boardname }" 
-						<c:if test="${board.boarddel=='y'}">class="menuList"</c:if>
-					 /> 
-					<select name="boardUse">
-							<option value="y"
-								<c:if test="${board.boarddel=='y'}">selected</c:if>>사용</option>
-							<option value="n"
-								<c:if test="${board.boarddel=='n'}">selected</c:if>>안사용</option>
+							 <c:if test="${board.boarddel=='y'}">class="menuList"</c:if> />
+					 <select>
+						<option value="y"
+							<c:if test="${board.boarddel=='y'}">selected</c:if>>사용</option>
+						<option value="n"
+							<c:if test="${board.boarddel=='x'}">selected</c:if>>안사용</option>
 					</select>
+					
 				</li>
 			</c:forEach>
 		</ul>
+		<a class="btn btn-default" id="saveMenu">저장</a>
 	</form>
 </div>

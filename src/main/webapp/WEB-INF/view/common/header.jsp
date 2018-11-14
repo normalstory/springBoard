@@ -21,9 +21,9 @@
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">
 			</form>
+			${today}
 			<a class="navbar-brand navbar-right" href="/filter/requestCounterFilter.jsp">
-				${today } 
-				<c:if test="${S_USER.name!=null}"> | ${S_USER.name}님 방가방가~ </c:if>
+				<c:if test="${uservo.username!=null}"> | ${uservo.username}님 방가방가~ </c:if>
 			</a> 
 		</div>
 	</div>
