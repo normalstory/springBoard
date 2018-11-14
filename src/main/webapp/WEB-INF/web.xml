@@ -34,7 +34,13 @@
 	<!-- step1) needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:kr/or/ddit/config/spring/root-context.xml</param-value>
+		<param-value>
+			classpath:kr/or/ddit/config/spring/root-context.xml
+			
+			<!--step3) DAO 데이터베이스 연동/ 트랜젝션 세팅 -->
+			classpath:kr/or/ddit/config/spring/datasource-context.xml
+			classpath:kr/or/ddit/config/spring/transation-context.xml		
+		</param-value>
 	</context-param>
 
 	<!-- step1) Bootstraps the root web application context before servlet initialization -->

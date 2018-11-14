@@ -3,8 +3,8 @@
 
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-sidebar">
-		<li class="active"> <a href="/main.jsp">Main <span class="sr-only">(current)</span> </a></li>
-		<li class="active"> <a href="/boardPanManager">게시판 메뉴관리							</a></li>	
+		<li class="active"> <a href="/main">Main <span class="sr-only">(current)</span> </a></li>
+		<li class="active"> <a href="/boardSetView">게시판 메뉴관리							</a></li>	
 		<li class="active"> <a href="/filter/requestCounterFilter.jsp">게시판 통계관리			</a></li>	
 		<li class="active"> <a href="/mvpTrello">MVP Modeling								</a></li>	
 		

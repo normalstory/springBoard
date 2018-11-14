@@ -13,7 +13,10 @@
 	<definition name="main" extends="basicLayout">
 		<put-attribute name="content" value="/WEB-INF/view/main.jsp"/>
 	</definition>
-	<definition name="boardList" extends="basicLayout">
+	<definition name="board/boardSet" extends="basicLayout">
+		<put-attribute name="content" value="/WEB-INF/view/board/boardSet.jsp"/>
+	</definition>
+	<definition name="board/boardList" extends="basicLayout">
 		<put-attribute name="content" value="/WEB-INF/view/board/boardList.jsp"/>
 	</definition>
 	

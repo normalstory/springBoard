@@ -38,15 +38,15 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form-signin" method="post" action="/loginServlet">
+		<form class="form-signin" method="post" action="/loginCheck">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			
 			<label for="inputId" class="sr-only">UserId</label>
-			<input id="inputId"  type="text" name="userId" value="jesica"
+			<input id="inputId"  type="text" name="userid" value="boss"
 				class="form-control" placeholder="아이디를 입력하세요"> <br />
 			
 			<label for="inputPassword" class="sr-only">Password</label>	
-			<input type="password" name="password" value="Pass1234"
+			<input type="password" name="userpass" value="passboss"
 				class="form-control" placeholder="비밀번호를 입력하세요"> <br />
 				
 			<div class="checkbox">
