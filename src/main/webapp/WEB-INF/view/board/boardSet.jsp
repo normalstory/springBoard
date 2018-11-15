@@ -50,7 +50,7 @@
 			</select> 
 		</li>
 	</ul>
-	<a class="btn btn-default addBoard" id="saveMenu">등록 </a>
+	<button type="button" class="addBoard">등록</button>
 	<br/><br/><br/><br/>
 	
 	<form id="frm" action="/boardSet" method="post">
@@ -58,24 +58,25 @@
 		<input id="boardid" type="hidden" name="boardid" >
 		<input id="boarddel" type="hidden" name="boarddel" >
 		<input id="pan_Case" type="hidden" name="setCase" >
-		<input id="boardname" type="hidden" name="boardname">
+		<input id="boardname" type="hidden" name="addboardname">
 		
 		<h3>운영 게시판 목록</h3>
 		<ul class="updateBoardParam" >
 			<c:forEach items="${boardList }" var="board" varStatus="i">
 				<li >
+					<input type="hidden" name="boardupid" value="${board.boardid }" />
 					<input type="text" name="boardname" value="${board.boardname }" 
-							 <c:if test="${board.boarddel=='y'}">class="menuList"</c:if> />
-					 <select>
+							<c:if test="${board.boarddel=='y'}">class="menuList"</c:if> />
+					 <select name="boardUse">
 						<option value="y"
 							<c:if test="${board.boarddel=='y'}">selected</c:if>>사용</option>
-						<option value="n"
+						<option value="x"
 							<c:if test="${board.boarddel=='x'}">selected</c:if>>안사용</option>
 					</select>
 					
 				</li>
 			</c:forEach>
+		<a class="btn btn-default" id="saveMenu">수정</a>
 		</ul>
-		<a class="btn btn-default" id="saveMenu">저장</a>
 	</form>
 </div>

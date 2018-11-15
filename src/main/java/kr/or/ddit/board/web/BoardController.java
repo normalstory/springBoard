@@ -43,45 +43,42 @@ public class BoardController {
 		String setCase = req.getParameter("setCase");
 		logger.debug("**setCase : {}",setCase);
 		if(setCase.equals("add")){
-			boardVo.setBoardname(req.getParameter("boardname"));
+			boardVo.setBoardname(req.getParameter("addboardname"));
 			boardVo.setBoarddel(req.getParameter("boarddel"));
 			boardVo.setUserid(req.getParameter("userid"));
 			
 			boardService.addBoard(boardVo);	
 			req.getServletContext().setAttribute("boardVo", boardVo);
 			
-			List<BoardVo> boardManu = boardService.boardManu();
-			req.getServletContext().setAttribute("boardManu", boardManu);
 		}
 		
 		if(setCase.equals("update")){
 			//다중처리 
-			String[] panIds = req.getParameterValues("boardid");
+			String[] panIds = req.getParameterValues("boardupid");
 			System.out.println(" 다중 게시판 출력 여부들  : " + panIds.length);
 			System.out.println(" 0번 방 게시판 id  : " + panIds[0]);
 			String[] names = req.getParameterValues("boardname");
 			System.out.println(" 다중 게시판 이름들  : " + names.length);
 			System.out.println(" 0번 방 게시판 이름  : " + names[0]);
-			String[] dels = req.getParameterValues("boarddel");
+			String[] dels = req.getParameterValues("boardUse");
 			System.out.println(" 다중 게시판 출력 여부들  : " + dels.length);
 			System.out.println(" 0번 방 게시판 출력 여 : " + dels[0]);
 			
-			//for(String name : names) {
-			for(int i=0;i<names.length-1;i++) {	
+			for(int i=0; i<names.length-1; i++) {	
 				System.out.println("panIds[i] : "+panIds[i]);
 				BoardVo panVo = boardService.chackPan(panIds[i]);
 				System.out.println("업데이트되는 panVo 상세 : "+ panVo);
-				boardVo.setBoardname(names[i]);
-				boardVo.setBoardid(dels[i]);
-				boardVo.setBoardnum(i);
+				panVo.setBoardname(names[i]);
+				panVo.setBoarddel(dels[i]);
+				panVo.setBoardnum(i);
 				
 				int updatePanResult = boardService.updatePan(panVo);
 				System.out.println(i+ ". 게시판관리 > panVo 수정: 성공1,실패0 : "+ updatePanResult);
-				req.getServletContext().setAttribute("panVo", panVo);
+				req.getServletContext().setAttribute("boardVo", panVo);
 			}
 		}
-		
-		
+		List<BoardVo> boardManu = boardService.boardManu();
+		req.getServletContext().setAttribute("boardManu", boardManu);
 		return "redirect:/boardSetView";
 	}
 	
