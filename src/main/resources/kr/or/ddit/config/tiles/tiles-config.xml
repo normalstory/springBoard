@@ -16,5 +16,8 @@
 	<definition name="board/boardSet" extends="basicLayout">
 		<put-attribute name="content" value="/WEB-INF/view/board/boardSet.jsp"/>
 	</definition>
+	<definition name="board/textEditer" extends="basicLayout">
+		<put-attribute name="content" value="/WEB-INF/view/board/textEditer.jsp"/>
+	</definition>
 	
 </tiles-definitions>

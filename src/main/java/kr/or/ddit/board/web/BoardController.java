@@ -22,20 +22,21 @@ public class BoardController {
 	@Resource(name="boardService")
 	private BoardServiceInf boardService;
 	
-	//1. 페이지 로드 
+	//1. 메인페이지 
 	@RequestMapping("/main")
 	public String loginView() {		
 		return "main";
 	}
 	
-	//1. 페이지 로드 
+	//2. 게시판관리 페이지 로드 
 	@RequestMapping("/boardSetView")
 	public String boardSet(HttpServletRequest req) {	
 		List<BoardVo> boardList = boardService.boardList();
 		req.setAttribute("boardList", boardList);
 		return "board/boardSet";
 	}
-	
+
+	//3. 게시판관리 페이지 : 게시판 추가, 업데이트, 리스트(메뉴) 출력
 	@RequestMapping(name="/boardSet",method= {RequestMethod.POST})
 	public String boardSetCreate(HttpServletRequest req, BoardVo boardVo) {
 
@@ -82,5 +83,11 @@ public class BoardController {
 		return "redirect:/boardSetView";
 	}
 	
+	
+	//4. 게시글 작성 페이지 로드
+	@RequestMapping("/textEditer")
+	public String textEditer() {	
+		return "board/textEditer";
+	}
 	
 }

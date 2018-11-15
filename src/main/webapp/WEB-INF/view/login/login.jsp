@@ -7,7 +7,7 @@
 <title>BoardPan Login</title>
 
 <!-- basicLib -->
-<%-- <%@ include file="../common/basicLib.jsp"%> --%>
+<%@ include file="../common/basicLib.jsp"%>
 
 <link href="/css/signin.css" rel="stylesheet">
 
