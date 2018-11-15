@@ -29,6 +29,16 @@ public class BoardService implements BoardServiceInf{
 	public List<BoardVo> boardManu() {
 		return boardDao.boardManu();
 	}
+
+	@Override
+	public BoardVo chackPan(String string) {
+		return boardDao.chackPan(string);
+	}
+
+	@Override
+	public int updatePan(BoardVo boardVo) {
+		return boardDao.updatePan(boardVo);
+	}
 	
 	
 }

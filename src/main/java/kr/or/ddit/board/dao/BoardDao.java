@@ -29,6 +29,16 @@ public class BoardDao implements BoardDaoInf{
 	public List<BoardVo> boardManu() {
 		return template.selectList("board.boardManu");
 	}
+
+	@Override
+	public BoardVo chackPan(String string) {
+		return template.selectOne("board.chackPan", string);
+	}
+
+	@Override
+	public int updatePan(BoardVo boardVo) {
+		return template.update("board.updatePan", boardVo);
+	}
 	
 	
 }

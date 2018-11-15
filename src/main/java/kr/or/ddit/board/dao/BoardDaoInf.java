@@ -11,5 +11,9 @@ public interface BoardDaoInf {
 	List<BoardVo> boardList();
 
 	List<BoardVo> boardManu();
+
+	BoardVo chackPan(String string);
+
+	int updatePan(BoardVo boardVo);
 	
 }

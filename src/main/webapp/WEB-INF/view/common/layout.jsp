@@ -17,7 +17,7 @@
 
 <!-- library -->
 <tiles:insertAttribute name="basicLib"></tiles:insertAttribute>
-	
+
 <title>Spring Board</title>
 </head>
 

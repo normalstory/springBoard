@@ -12,4 +12,8 @@ public interface BoardServiceInf {
 
 	List<BoardVo> boardManu();
 
+	BoardVo chackPan(String string);
+
+	int updatePan(BoardVo panVo);
+
 }
