@@ -9,6 +9,8 @@
   	<typeAliases>
 		<typeAlias type="kr.or.ddit.user.model.UserVo" alias="userVo" />
 		<typeAlias type="kr.or.ddit.board.model.BoardVo" alias="boardVo" />
+		<typeAlias type="kr.or.ddit.board.model.TextVo" alias="textVo" />
+		<typeAlias type="kr.or.ddit.util.model.PageVo" alias="pageVo" />
   	</typeAliases>
   	
   	<mappers>

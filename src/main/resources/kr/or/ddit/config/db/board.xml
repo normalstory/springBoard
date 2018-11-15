@@ -23,7 +23,6 @@
 		select * from springboard where boarddel='y' order by boarddel desc, boardnum asc
 	</select>
 	
-	
 	<!--3 게시판 관리page : 게시판 아이디로 게시판 확인 -->
 	<select id="chackPan" resultType="boardVo" parameterType="String">
 		select * from springboard where boardid=#{boardid}
@@ -37,5 +36,26 @@
 		boardid=#{boardid}
 	</update>
 
-
+	
+	<!-- 게시판 목록page : '선택한' 게시판에 대한 '게시글' 목록 받기 + " 페이지 별 목록의 개수 제한 " + " 정렬 "-->
+	<select id="textList" resultType="textVo" parameterType="pageVo">
+		select textnum, 
+			   lpad('&#8618;　',(level-1)*3,'　')||texttitle t, 
+			   userid, textbirth, textnump, level 
+		from
+				(select rownum rnum, a.* from
+					(select text.* from text 
+                 	 where boardid=#{panId} and textstate='y' order by textnum desc) a)
+		where rnum between #{page}*#{pageSize}-(#{pageSize}-1)
+		               and #{page}*#{pageSize}
+		start with textnump is null 
+	    connect by prior textnum = textnump
+	    order siblings by textseqnum desc, textnum asc
+	</select>
+	
+	<!-- 게시판 목록page : '선택한' 게시판에 대한 '게시글' 목록의 '개수' for 페이지 처리   -->
+	<select id="pageCnt" resultType="integer" parameterType="String">
+		select count(*) from text where boardid=#{boardid} and textstate='x'
+	</select>
+	
 </mapper>

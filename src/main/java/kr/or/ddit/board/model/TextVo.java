@@ -14,6 +14,7 @@ public class TextVo {
 	private String  repleid;
 	private String  boardid; 
 	private String  userid;
+	private String  t;	//for list alias
 	
 	public TextVo() {}
 
@@ -105,12 +106,21 @@ public class TextVo {
 		this.userid = userid;
 	}
 
+	public String getT() {
+		return t;
+	}
+
+	public void setT(String t) {
+		this.t = t;
+	}
+
 	@Override
 	public String toString() {
 		return "TextVo [textnum=" + textnum + ", texttitle=" + texttitle + ", textsubline=" + textsubline
 				+ ", textbirth=" + textbirth + ", textstate=" + textstate + ", textdelday=" + textdelday
 				+ ", textseqnum=" + textseqnum + ", textnump=" + textnump + ", repleid=" + repleid + ", boardid="
-				+ boardid + ", userid=" + userid + "]";
+				+ boardid + ", userid=" + userid + ", t=" + t + "]";
 	}
 
 }
+ 

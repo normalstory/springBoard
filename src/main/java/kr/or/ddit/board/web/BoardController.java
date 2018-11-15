@@ -1,6 +1,7 @@
 package kr.or.ddit.board.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.board.model.BoardVo;
+import kr.or.ddit.board.model.TextVo;
 import kr.or.ddit.board.service.BoardServiceInf;
+import kr.or.ddit.util.model.PageVo;
 
 @Controller
 public class BoardController {
@@ -37,7 +41,7 @@ public class BoardController {
 	}
 
 	//3. 게시판관리 페이지 : 게시판 추가, 업데이트, 리스트(메뉴) 출력
-	@RequestMapping(name="/boardSet",method= {RequestMethod.POST})
+	@RequestMapping(value="/boardSet", method= {RequestMethod.POST})
 	public String boardSetCreate(HttpServletRequest req, BoardVo boardVo) {
 
 		//게시판을 추가하는 경우(한개 form으로 두 기능 시행을 위해)
@@ -56,14 +60,8 @@ public class BoardController {
 		if(setCase.equals("update")){
 			//다중처리 
 			String[] panIds = req.getParameterValues("boardupid");
-			System.out.println(" 다중 게시판 출력 여부들  : " + panIds.length);
-			System.out.println(" 0번 방 게시판 id  : " + panIds[0]);
 			String[] names = req.getParameterValues("boardname");
-			System.out.println(" 다중 게시판 이름들  : " + names.length);
-			System.out.println(" 0번 방 게시판 이름  : " + names[0]);
 			String[] dels = req.getParameterValues("boardUse");
-			System.out.println(" 다중 게시판 출력 여부들  : " + dels.length);
-			System.out.println(" 0번 방 게시판 출력 여 : " + dels[0]);
 			
 			for(int i=0; i<names.length-1; i++) {	
 				System.out.println("panIds[i] : "+panIds[i]);
@@ -83,11 +81,36 @@ public class BoardController {
 		return "redirect:/boardSetView";
 	}
 	
-	
 	//4. 게시글 작성 페이지 로드
-	@RequestMapping("/textEditer")
-	public String textEditer() {	
-		return "board/textEditer";
+	@RequestMapping(value="/textList", method= {RequestMethod.GET})
+	public String textList(BoardVo boardVo, PageVo pageVo, Model model) {	
+		int page = pageVo.getPage();
+		int pageSize = pageVo.getPageSize();
+		String boardid= boardVo.getBoardid();
+		logger.debug("***page : {} , pageSize : {} , boardid : {}", page,pageSize,boardid);
+		
+		pageVo.setPage(page);
+		pageVo.setPageSize(pageSize);
+		pageVo.setPanId(boardid);
+		logger.debug("***pageVo : {}", pageVo);
+		
+		Map<String, Object> resultMap = boardService.textPagingList(pageVo, boardid);
+		List<TextVo> textList = (List<TextVo>) resultMap.get("pageVoList");
+		int pageNum = (int)resultMap.get("pageNum");
+		
+		logger.debug("***textList : {}", textList);
+		logger.debug("***pageNum : {}", pageNum);
+		logger.debug("***page : {}", page);
+		logger.debug("***boardVo : {}", boardVo);
+
+		model.addAttribute("textList", textList);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("page", page);
+		
+		boardVo =boardService.chackPan(boardVo.getBoardid());
+		model.addAttribute("boardVo", boardVo);
+		
+		return "board/textList";
 	}
 	
 }

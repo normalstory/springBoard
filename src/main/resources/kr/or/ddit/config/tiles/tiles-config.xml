@@ -16,8 +16,11 @@
 	<definition name="board/boardSet" extends="basicLayout">
 		<put-attribute name="content" value="/WEB-INF/view/board/boardSet.jsp"/>
 	</definition>
+	<definition name="board/textList" extends="basicLayout">
+		<put-attribute name="content" value="/WEB-INF/view/board/textList.jsp"/>
+	</definition>
 	<definition name="board/textEditer" extends="basicLayout">
-		<put-attribute name="content" value="/WEB-INF/view/board/textEditer.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/view/board/textSmartEditer.jsp"/>
 	</definition>
 	
 </tiles-definitions>

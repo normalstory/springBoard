@@ -1,6 +1,7 @@
 package kr.or.ddit.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,6 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.board.model.BoardVo;
+import kr.or.ddit.board.model.TextVo;
+import kr.or.ddit.util.model.PageVo;
 
 @Repository
 public class BoardDao implements BoardDaoInf{
@@ -39,6 +42,16 @@ public class BoardDao implements BoardDaoInf{
 	public int updatePan(BoardVo boardVo) {
 		return template.update("board.updatePan", boardVo);
 	}
-	
+
+	@Override
+	public List<TextVo> textList(PageVo pageVo) {
+		return template.selectList("board.textList", pageVo);
+	}
+
+	@Override
+	public int pageCnt(String panId) {
+		return template.selectOne("board.pageCnt",panId);
+	}
+
 	
 }
