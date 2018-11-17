@@ -75,8 +75,8 @@ function validation() {
 <div class="row">
 	<div class="col-sm-8 blog-main">
 		<form role="form" action="/textEditer" method="post" id="frm" enctype="multipart/form-data"> <!--  --> 
-			<input type="text" name="userid" value="${textVo.userid }">
-			<input type="text" name="boardid"  value="${textVo.boardid  }">
+			<input type="text" name="userid" value="${userVo.userid }">
+			<input type="text" name="boardid"  value="${boardVo.boardid  }">
 
 			${boardVo.boardname }게시판 &#187; <br/>
 			<h2 class="sub-header"><input type="text" name="texttitle" value="${textVo.texttitle  }" placeholder="글 제목을 작성해주세요"></h2>

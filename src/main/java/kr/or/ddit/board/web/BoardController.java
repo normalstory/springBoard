@@ -125,8 +125,8 @@ public class BoardController {
 	
 	//5. 새글 작성 페이지 로드 
 	@RequestMapping("/textEditerView")
-	public String textEditerView(UserVo userVo, BoardVo boardVo, Model model) {
-		model.addAttribute("userid", userVo.getUserid());
+	public String textEditerView(HttpSession session, BoardVo boardVo, Model model) {
+		model.addAttribute("userVo", session.getAttribute("uservo"));
 		model.addAttribute("boardVo", boardService.chackPan(boardVo.getBoardid()));
 		return "board/textEditer";
 	}
@@ -204,7 +204,8 @@ public class BoardController {
 	
 	//7. 게시글 수정 페이지로드
 	@RequestMapping("/textUpdateView")
-	public String textUpdateView(TextVo textVo, ReplyVo replyVo, Model model ) {
+	public String textUpdateView(HttpSession session, TextVo textVo, ReplyVo replyVo, Model model ) {
+		model.addAttribute("userVo", session.getAttribute("uservo"));
 		model.addAttribute("textVo", boardService.selectText(textVo.getTextnum()));
 		model.addAttribute("boardVo", boardService.chackPan(textVo.getBoardid()));
 		//첨부파일목록 
