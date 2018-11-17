@@ -14,11 +14,11 @@ var oEditors = []; // 개발되어 있는 소스에 맞추느라, 전역변수�
 $(document).ready(function() {
 	var count;
 	$(document).ready(function() {
-		count=1;
+		count=2;
 		//첨부파일 - 버튼 추가
 		$("#buttonAdd").on("click", function(){
 			if(count<6){
-				$("#addDirBt").append("<input type='file' name='uploadFile"+count+"'' >");
+				$("#addDirBt").append("<input type='file' name='uploadFile' >");
 				$("#addDirBtCnt").val(count);
 			}else{
 				alert("최대 5개의 파일만 첨부할 수 있습니다.")
@@ -74,23 +74,29 @@ function validation() {
 
 <div class="row">
 	<div class="col-sm-8 blog-main">
-		<form role="form" action="/textEditer" method="post" id="frm" enctype="multipart/form-data">
-			<input type="hidden" name="useriId" value="${userid }">
-			<input type="hidden" name="boardid"  value="${boardVo.boardid  }">
+		<form role="form" action="/textEditer" method="post" id="frm" enctype="multipart/form-data"> <!--  --> 
+			<input type="text" name="userid" value="${textVo.userid }">
+			<input type="text" name="boardid"  value="${textVo.boardid  }">
 
 			${boardVo.boardname }게시판 &#187; <br/>
-			<h2 class="sub-header"><input type="text" name="texttitle" placeholder="글 제목을 작성해주세요"></h2>
+			<h2 class="sub-header"><input type="text" name="texttitle" value="${textVo.texttitle  }" placeholder="글 제목을 작성해주세요"></h2>
 			<div class="table-responsive">
 				<div class="form-group">
-					<textarea name="smarteditor" id="smarteditor" ></textarea>
+					<textarea name="smarteditor" id="smarteditor">${textVo.textsubline }</textarea>
 				</div>
 			</div>
 			<div class="table-responsive">
 				<a class="btn btn-default pull-left" id="buttonAdd" >첨부파일 추가</a><br>
 				<div class="form-group">
-					<input type="hidden" id="addDirBtCnt" name="addDirBtCnt" >
+					<input type="hidden" id="addDirBtCnt" name="addDirBtCnt" value="1">
+					<div class="col-sm-10 " id="addedFile">
+					<c:forEach items="${fileList }" var="addFile" varStatus="i">
+							<span>첨부파일 ${i.count } : ${addFile.addfilename} - </span>  <a href="${addFile.addfilepath}">다운로드</a>
+						<br /> 
+					</c:forEach>
+					</div>
 					<div class="col-sm-10" id="addDirBt" >
-						 
+						<input type='file' name='uploadFile' >
 					</div>
 				</div>
 			</div>

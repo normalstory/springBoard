@@ -2,7 +2,7 @@ package kr.or.ddit.board.model;
 
 import java.util.Date;
 
-public class Reply {
+public class ReplyVo {
 	private String repleid;
 	private int textnum;
 	private String replesubline;
@@ -10,7 +10,7 @@ public class Reply {
 	private String replestate; 
 	private Date repledelday;
 	
-	public Reply() {}
+	public ReplyVo() {}
 
 	public String getRepleid() {
 		return repleid;

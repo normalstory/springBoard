@@ -38,5 +38,12 @@
 		<property name="prefix" value="/WEB-INF/view/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	
+	
+<!-- step 4 파일첨부 4종세트 : pom/bean/jsp(enctype="multipart/form-data")/controller(@RequestPart("uploadFile") MultipartFile part) -->	
+	<!-- multipart Resolver 설정 < 파일업로드를 위해  + pom 에 디펜던시 추가 ! &   bean ID는 정해져있다-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="25000000" />
+	</bean>
 
 </beans>

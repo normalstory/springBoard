@@ -11,6 +11,7 @@ public class TextVo {
 	private Date 	textdelday;
 	private int 	textseqnum;
 	private int 	textnump;
+	private int 	tofile_id;
 	private String  repleid;
 	private String  boardid; 
 	private String  userid;
@@ -82,6 +83,14 @@ public class TextVo {
 		this.textnump = textnump;
 	}
 
+	public int getTofile_id() {
+		return tofile_id;
+	}
+
+	public void setTofile_id(int tofile_id) {
+		this.tofile_id = tofile_id;
+	}
+
 	public String getRepleid() {
 		return repleid;
 	}
@@ -118,8 +127,8 @@ public class TextVo {
 	public String toString() {
 		return "TextVo [textnum=" + textnum + ", texttitle=" + texttitle + ", textsubline=" + textsubline
 				+ ", textbirth=" + textbirth + ", textstate=" + textstate + ", textdelday=" + textdelday
-				+ ", textseqnum=" + textseqnum + ", textnump=" + textnump + ", repleid=" + repleid + ", boardid="
-				+ boardid + ", userid=" + userid + ", t=" + t + "]";
+				+ ", textseqnum=" + textseqnum + ", textnump=" + textnump + ", tofile_id=" + tofile_id + ", repleid="
+				+ repleid + ", boardid=" + boardid + ", userid=" + userid + ", t=" + t + "]";
 	}
 
 }

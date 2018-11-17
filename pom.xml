@@ -142,5 +142,14 @@
 		</dependency>
 				
 		
+<!-- step 4 파일첨부 4종세트 : pom/bean/jsp(enctype="multipart/form-data")/controller(@RequestPart("uploadFile") MultipartFile part) -->	
+		<!-- multipart Resolver 설정 < 파일업로드를 위해 apache commons file uploader! -->
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+		
 	</dependencies>
 </project>

@@ -11,6 +11,8 @@
 		<typeAlias type="kr.or.ddit.board.model.BoardVo" alias="boardVo" />
 		<typeAlias type="kr.or.ddit.board.model.TextVo" alias="textVo" />
 		<typeAlias type="kr.or.ddit.util.model.PageVo" alias="pageVo" />
+		<typeAlias type="kr.or.ddit.board.model.AddFileVo" alias="addFileVo" />
+		<typeAlias type="kr.or.ddit.board.model.ReplyVo" alias="replyVo" />
   	</typeAliases>
   	
   	<mappers>
