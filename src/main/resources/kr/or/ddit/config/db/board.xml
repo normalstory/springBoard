@@ -90,7 +90,7 @@
 	<update id="textUpdate" parameterType="Integer">
 		UPDATE text SET 
 			texttitle = #{texttitle},
-			textsubline = #{textsubline},
+			textsubline = #{textsubline}
 		where textnum = #{textnum}
 	</update>
 	

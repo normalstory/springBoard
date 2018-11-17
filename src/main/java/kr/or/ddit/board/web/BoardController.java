@@ -135,12 +135,26 @@ public class BoardController {
 	@RequestMapping(value="/textEditer", method= {RequestMethod.POST})
 	public String textEditer(@RequestPart("uploadFile") MultipartFile[] part,
 							HttpServletRequest req, UserVo userVo, BoardVo boardVo, TextVo textVo) {
-
-		textVo.setBoardid(boardVo.getBoardid());
-		textVo.setTexttitle(textVo.getTexttitle());
-		textVo.setTextsubline(req.getParameter("smarteditor"));
-		textVo.setUserid(userVo.getUserid());
-		boardService.addText(textVo);
+		
+		//새글 여부 판단
+//		String checkText = req.getParameter("checkText");
+//		logger.debug("checkText :{}",checkText);
+//		logger.debug("checkText :{}",textVo.getTexttitle());
+//		logger.debug("checkText :{}",req.getParameter("smarteditor"));
+//		
+//		//새글이 아니면,
+//		if(checkText !="") {
+//			textVo.setTexttitle(textVo.getTexttitle());
+//			textVo.setTextsubline(req.getParameter("smarteditor"));
+//			boardService.textUpdate(Integer.parseInt(checkText));
+//		}else {
+			textVo.setBoardid(boardVo.getBoardid());
+			textVo.setTexttitle(textVo.getTexttitle());
+			textVo.setTextsubline(req.getParameter("smarteditor"));
+			textVo.setUserid(userVo.getUserid());
+			boardService.addText(textVo);
+//		}
+		
 
 		//반복횟수 가져오기
 		int checkFileCnt = Integer.parseInt(req.getParameter("addDirBtCnt"));
@@ -177,6 +191,51 @@ public class BoardController {
 		return "redirect:/textList?page=1&pageSize=10&boardid="+textVo.getBoardid()+"&boardname="+board.getBoardname();
 	}
 	
+//	//5. 새글 작성 내용 저장 
+//		@RequestMapping(value="/textEditer", method= {RequestMethod.POST})
+//		public String textEditer(@RequestPart("uploadFile") MultipartFile[] part,
+//								HttpServletRequest req, UserVo userVo, BoardVo boardVo, TextVo textVo) {
+//
+//			textVo.setBoardid(boardVo.getBoardid());
+//			textVo.setTexttitle(textVo.getTexttitle());
+//			textVo.setTextsubline(req.getParameter("smarteditor"));
+//			textVo.setUserid(userVo.getUserid());
+//			boardService.addText(textVo);
+//
+//			//반복횟수 가져오기
+//			int checkFileCnt = Integer.parseInt(req.getParameter("addDirBtCnt"));
+//			
+//			for(int i =0; i< checkFileCnt ; i++) {
+//				try { 
+//					//해당 반복문에 대한 예외처리(null) 
+//					if(part[i].getSize()>0) { 	
+//						String path = "/Users/bhuanchanwoo/git/springBoard/src/main/webapp/files";
+//						String orginalFileName = part[i].getOriginalFilename();	
+//						String fileExt = FileUtil.getFileExt(orginalFileName);
+//						String addfileuuid = UUID.randomUUID().toString()+fileExt; 
+//					
+//						File file = new File(path+File.separator+addfileuuid);
+//						
+//						AddFileVo addFile = new AddFileVo();
+//						addFile.setAddfileuuid(addfileuuid);
+//						addFile.setAddfilename(orginalFileName);
+//						addFile.setAddfilepath(path);
+//						addFile.setAddfileext(fileExt);
+//						addFile.setTextnum(textVo.getTofile_id());
+//						
+//						logger.debug("fileVo :{}",addFile);
+//						
+//						part[i].transferTo(file);	//경로 저장 
+//						boardService.insertFile(addFile);	//데이터베이스 저장
+//					
+//					}
+//				} catch (IllegalStateException | IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			BoardVo board = boardService.chackPan(boardVo.getBoardid());
+//			return "redirect:/textList?page=1&pageSize=10&boardid="+textVo.getBoardid()+"&boardname="+board.getBoardname();
+//		}
 	//6. 상세 페이지 로드  
 	@RequestMapping("/textDetail")
 	public String textDetail(HttpSession session, BoardVo boardVo, TextVo textVo, ReplyVo replyVo, Model model ) {
