@@ -103,8 +103,8 @@ public class BoardDao implements BoardDaoInf{
 	}
 
 	@Override
-	public int textUpdate(int textnum) {
-		return template.update("board.textUpdate", textnum);
+	public int textUpdate(TextVo textVo) {
+		return template.update("board.textUpdate", textVo);
 	}
 
 	@Override

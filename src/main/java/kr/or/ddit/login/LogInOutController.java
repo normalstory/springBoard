@@ -36,7 +36,8 @@ public class LogInOutController {
 	
 	//2. 페이지에서 입력된 값 받아오기
 	@RequestMapping("/loginCheck")
-	public String loginCheck(UserVo userVo, HttpServletRequest req, HttpServletResponse resp, HttpSession session) {
+	public String loginCheck(UserVo userVo, HttpServletRequest req, 
+							HttpServletResponse resp, HttpSession session) {
 		String userId = userVo.getUserid();
 		String userPass = userVo.getUserpass();
 

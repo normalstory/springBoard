@@ -12,19 +12,14 @@
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/main">JSP : BoardPan </a> 
+			<a class="navbar-brand" href="/main">SpringBoard : 
+			<c:if test="${uservo.username!=null}"> ${uservo.username}님, 방가방가~ </c:if></a> 
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">${today} |</a> </li>
 				<li><a href="/logout">Logout</a></li>
 			</ul>
-			<form class="navbar-form navbar-right">
-				<input type="text" class="form-control" placeholder="Search...">
-			</form>
-			${today}
-			<a class="navbar-brand navbar-right" href="/filter/requestCounterFilter.jsp">
-				<c:if test="${uservo.username!=null}"> | ${uservo.username}님 방가방가~ </c:if>
-			</a> 
 		</div>
 	</div>
 </nav>

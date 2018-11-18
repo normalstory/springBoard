@@ -112,8 +112,8 @@ public class BoardService implements BoardServiceInf{
 	}
 
 	@Override
-	public int textUpdate(int textnum) {
-		return boardDao.textUpdate(textnum) ;
+	public int textUpdate(TextVo textVo) {
+		return boardDao.textUpdate(textVo) ;
 	}
 
 	@Override

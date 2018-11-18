@@ -32,10 +32,10 @@
 
 <div class="row">
 	<div class="col-sm-8 blog-main">
-		${boardVo.boardname }게시판 &#187; <br/>
+		${boardVo.boardname }게시판 &#187;  글번호 : ${textVo.textnum  } <br/>
 		작성자 : ${textVo.userid } | 작성일 : <fmt:formatDate value="${textVo.textbirth }" pattern="yyyy-MM-dd HH:MM"/> 
 		<a class="btn btn-default pull-right" 
-			href="/boardTextReplyEditer?userId=${userVo.userid}&panId=${boardVo.boardid }&textNum=${textVo.textnum}">답글</a>
+			href="/textReplyEditerView?viewType=textReply&userid=${userVo.userid}&boardid=${boardVo.boardid }&textnum=${textVo.textnum}">답글</a>
 		<!-- 접근 권한 제한 : 삭제, 수정 -->
 		<c:if test="${userVo.userid==textVo.userid}">
 			<a class="btn btn-default pull-right" 

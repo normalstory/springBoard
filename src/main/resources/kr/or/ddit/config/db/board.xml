@@ -39,7 +39,7 @@
 	<!-- 게시글> 목록, 글 수, 정렬 "-->
 	<select id="textList" resultType="textVo" parameterType="pageVo">
 		select textnum, 
-			   lpad('&#8618;　',(level-1)*3,'　')||texttitle t, 
+			   lpad('┗　', (level-1)*4, '　')||texttitle t, 
 			   userid, textbirth, textnump, level 
 		from
 				(select rownum rnum, a.* from
@@ -75,7 +75,7 @@
 			#{tofile_id}, #{boardid}, #{texttitle}, #{textsubline}, SYSDATE,
 			#{userid}, null, 'y'
 			<choose>
-				<when test = "textseqnum == null or textnump == 0"> ,textseqnum.nextVal</when> 
+				<when test = "textseqnum == null or textseqnum == 0"> ,textseqnum.nextVal</when> 
 				<otherwise>,#{textseqnum}</otherwise> 
 			</choose>
 			<if test="textnump != null and textnump != 0">,#{textnump}</if> )
@@ -86,8 +86,8 @@
 		select * from text where textnum=#{textnum}
 	</select>
 	
-	<!-- 글 수정 -->
-	<update id="textUpdate" parameterType="Integer">
+	<!-- 글 수정... ㅜ 왜.. 일부만은 안되지?.....-->
+	<update id="textUpdate" parameterType="textVo">
 		UPDATE text SET 
 			texttitle = #{texttitle},
 			textsubline = #{textsubline}

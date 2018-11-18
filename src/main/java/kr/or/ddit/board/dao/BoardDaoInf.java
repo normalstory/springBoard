@@ -40,7 +40,7 @@ public interface BoardDaoInf {
 
 	int replyDel(String repleid);
 
-	int textUpdate(int textnum);
+	int textUpdate(TextVo textVo);
 
 	AddFileVo fileSelectByUUID(String addfileuuid);
 	

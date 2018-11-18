@@ -75,26 +75,31 @@ function validation() {
 <div class="row">
 	<div class="col-sm-8 blog-main">
 		<form role="form" action="/textEditer" method="post" id="frm" enctype="multipart/form-data"> <!--  --> 
-			<input type="text" name="userid" value="${userVo.userid }">
-			<input type="text" name="boardid"  value="${boardVo.boardid  }">
-			<input type="text" name="checkText"  value="${textVo.textnum  }">
+			<input type="text" name="userid" value="${userid }">
+			<input type="text" name="boardid"  value="${boardid  }">
+			<input type="text" name="textnum"  value="${textnum}">
+			<input type="text" name="viewType"  value="${type}">
+			<%-- <input type="text" name="checkText"  value="${textVo.textnum  }"> --%>
 
-			${boardVo.boardname }게시판 &#187; <br/>
+			${boardVo.boardname }게시판 &#187; 글번호 : ${textVo.textnum  }<br/>
 			<h2 class="sub-header"><input type="text" name="texttitle" value="${textVo.texttitle  }" placeholder="글 제목을 작성해주세요"></h2>
 			<div class="table-responsive">
 				<div class="form-group">
 					<textarea name="smarteditor" id="smarteditor">${textVo.textsubline }</textarea>
 				</div>
 			</div>
-			<div class="table-responsive">
+			<div class="table-responsive"> 
+				<!-- for 답글용 -->
+				<c:if test="${textnum == 0 || textnum eq null}">
+					<c:forEach items="${fileList }" var="addFile" varStatus="i">
+						<span>첨부파일 ${i.count } : ${addFile.addfilename} - </span>  <a href="${addFile.addfilepath}">다운로드</a>
+						<br /> 
+					</c:forEach>
+				</c:if>		
 				<a class="btn btn-default pull-left" id="buttonAdd" >첨부파일 추가</a><br>
 				<div class="form-group">
 					<input type="hidden" id="addDirBtCnt" name="addDirBtCnt" value="1">
 					<div class="col-sm-10 " id="addedFile">
-					<c:forEach items="${fileList }" var="addFile" varStatus="i">
-							<span>첨부파일 ${i.count } : ${addFile.addfilename} - </span>  <a href="${addFile.addfilepath}">다운로드</a>
-						<br /> 
-					</c:forEach>
 					</div>
 					<div class="col-sm-10" id="addDirBt" >
 						<input type='file' name='uploadFile' >
